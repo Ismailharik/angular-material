@@ -1,0 +1,66 @@
+<div [formGroup]="form" class="course-details-form">
+
+    <mat-form-field class="example-full-width">
+        <mat-label>Favorite food</mat-label>
+        <input matInput placeholder="Ex. Pizza" formControlName="title" value="Su" #title>
+        <mat-hint align="end">{{title.value.length}}/60</mat-hint>
+        <mat-error *ngIf="courseTitle?.hasError('minlength') && !courseTitle?.hasError('required')">
+            A minimum length of 5 charachters is required
+        </mat-error>
+        <mat-error *ngIf="courseTitle?.hasError('required') ">
+            Required
+        </mat-error>
+    </mat-form-field>
+    <!-- Create custom error -->
+    <mat-form-field class="example-full-width">
+        <mat-label>Email</mat-label>
+        <input type="email" matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher"
+            placeholder="Ex. pat@example.com">
+        <mat-hint>Errors appear instantly!</mat-hint>
+        <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">Please enter a
+            valid email address</mat-error>
+        <mat-error *ngIf="emailFormControl.hasError('required')">Email is <strong>required</strong></mat-error>
+    </mat-form-field>
+
+    <mat-radio-group class="course-type" formControlName="courseType">
+        <mat-radio-button [disabled]="true" value="free"></mat-radio-button>
+        <mat-radio-button value="premium"></mat-radio-button>
+        <mat-radio-button value="xx"></mat-radio-button>
+    </mat-radio-group>
+
+    <mat-form-field appearance="fill">
+        <mat-select formControlName="category" multiple placeholder="Select Category">
+            <mat-option>None</mat-option>
+
+            <mat-optgroup label="Beginners">
+                <mat-option value="new x">new X</mat-option>
+                <mat-option value="new xx">new XX</mat-option>
+                <mat-option value="new xxx">new XXX</mat-option>
+
+            </mat-optgroup>
+            <mat-option value="Beginners">Beginners</mat-option>
+            <mat-option value="Intermediate">Intermediate</mat-option>
+            <mat-option value="Advanced">Advanced</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <input matInput formControlName="releasedAt" placeholder="Release date" [matDatepicker]="releasedAtPicker">
+        <mat-datepicker-toggle matSuffix [for]="releasedAtPicker">
+        </mat-datepicker-toggle>
+        <!-- Use Date class in case you want to past some classes that will be applied on the date picker -->
+        <mat-datepicker #releasedAtPicker [dateClass]="dateClass">
+        </mat-datepicker>
+    </mat-form-field>
+
+    <!-- It can work without mat-form-field -->
+    <mat-checkbox color="primary" formControlName="downloadsAllowed" [indeterminate]="true">
+        Downloads allowed?
+    </mat-checkbox>
+
+    <mat-form-field  appearance="outline">
+        <textarea  formControlName="longDescription" matInput placeholder="description" cdkTextareaAutosize></textarea>
+    </mat-form-field>
+
+
+</div>
