@@ -59,7 +59,7 @@
     </mat-checkbox>
 
     <mat-form-field  appearance="outline">
-        <textarea  formControlName="longDescription" matInput placeholder="description" cdkTextareaAutosize></textarea>
+        <textarea  formControlName="longDescription" matInput placeholder="description" cdkTextareaAutosize [cdkAutosizeMaxRows]="5" [cdkAutosizeMinRows]="2"></textarea>
     </mat-form-field>
 
 

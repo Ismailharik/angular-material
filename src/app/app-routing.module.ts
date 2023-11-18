@@ -4,6 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { CourseComponent } from './course/course.component';
 import { CreateCourseComponent } from './create-course/create-course.component';
+import { courseResolver } from './services/course.resolver';
 
 const routes: Routes = [
   {
@@ -18,9 +19,9 @@ const routes: Routes = [
 {
     path: 'courses/:id',
     component: CourseComponent,
-    // resolve: {
-    //     course: courseResolver
-    // }
+    resolve: {
+        course: courseResolver
+    }
 },
 {
 path: 'add-new-course',
